@@ -1,0 +1,16 @@
+#chatbox {
+    height: 400px;
+    overflow-y: auto;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.botText {
+    color: #008000;
+    font-weight: bold;
+}
+.userText {
+    color: #0000ff;
+    font-weight: bold;
+}
