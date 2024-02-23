@@ -1,89 +1,63 @@
-# Data Science Batch Models Monitoring Dashboards in Datadog
+# Comprehensive Monitoring Dashboards for Data Science Batch Models in Datadog
+
+## Introduction
+
+This document serves as a professional guide for utilizing Datadog's Monitoring Dashboards, specifically designed for Data Science Batch Models. It aims to provide an in-depth understanding for both Leadership and Engineering teams, ensuring effective utilization of these dashboards for optimal operational oversight and technical management.
+
+---
 
 ## Leadership Monitoring Dashboard
 
-### Overview
+### Objective
 
-This section serves as a guide for leadership to understand and effectively utilize the custom-built monitoring dashboard in Datadog, designed specifically for overseeing Data Science Batch Models. The dashboard consists of 8 widgets, each providing crucial insights into the performance and health of the batch processing jobs.
+The Leadership Dashboard is crafted to provide strategic insights into the performance and health of batch processing jobs, enabling informed decision-making and efficient resource management.
 
-### Widgets Breakdown
+### Dashboard Widgets Overview
 
-#### 1. Number of Jobs
-- **Purpose**: Displays the total number of batch processing jobs executed.
+| Widget Number | Widget Name | Purpose | Insight |
+|---------------|-------------|---------|---------|
+| 1 | Number of Jobs | To display the total count of batch jobs executed | Indicates workload and activity levels |
+| 2 | Success Rate | Ratio of successful Pods to total Pods | Measures system efficiency |
+| 3 | Failure Rate | Ratio of failed Pods to total Pods | Assesses job reliability |
+| 4 - 8 | Specific Metrics | Includes Pods failed due to OOM, Container restarts, etc. | Provides detailed insights into specific issues |
+| 9 - 15 | Resource Consumption and Time Series Data | Monitors CPU, Memory, Disk, Network usage, and Network errors | Aids in resource optimization |
 
-#### 2. Success Rate
-- **Calculation**: Pods that are successful / Total number of pods
-
-#### 3. Failure Rate
-- **Calculation**: Pods that are failed / Total number of pods
-
-#### 4. Number of Pods Failed
-- **Purpose**: Shows the count of failed pods.
-
-#### 5. Number of Pods Failed due to OOM
-- **Purpose**: Counts pods that failed because of Out-Of-Memory (OOM) issues.
-
-#### 6. Number of Container Restarts
-- **Purpose**: Tracks how many times containers within the pods have restarted.
-
-#### 7. Number of Pods Failed due to Crash Loop Back-Off Errors
-- **Purpose**: Quantifies failures specifically attributed to crash loop back-off errors.
-
-#### 8. Number of Pending Pods
-- **Purpose**: Indicates the count of pods that are in a pending state and haven’t started execution.
+---
 
 ## Engineering Monitoring Dashboard
 
-### Overview
+### Purpose
 
-This document assists engineering teams in understanding and using the Engineering Monitoring Dashboard in Datadog, tailored for Data Science Batch Models. It is divided into two sections: Overview and Detailed Pod/Container Information.
+The Engineering Dashboard is designed to offer detailed technical data on pod and container performance, essential for technical troubleshooting and incident resolution.
 
 ### Overview Section Widgets
 
-#### 1. Number of Jobs
-- **Purpose**: Displays the total count of batch jobs executed.
+Detailed breakdown of the widgets:
 
-#### 2. Successful Jobs
-- **Purpose**: Shows the count of jobs completed successfully.
-
-#### 3. Failed Jobs
-- **Purpose**: Counts the number of jobs that have failed.
-
-#### 4. Number of Pods Failed due to OOM
-- **Purpose**: Tracks failures specifically due to Out-of-Memory errors.
-
-#### 5. Number of Container Restarts
-- **Purpose**: Indicates how often containers are being restarted.
-
-#### 6. Number of Pods Failed due to Crash Loop Back-Off Errors
-- **Purpose**: Quantifies failures from crash loop back-off errors.
-
-#### 7. Pods in Bad Phase (Pending, Failed)
-- **Purpose**: Shows pods in non-optimal states.
-
-#### 8. Top Cron Jobs by Job Count
-- **Purpose**: Identifies the most frequently run cron jobs.
-
-#### 9. Events Widget from OCP
-- **Purpose**: Displays OpenShift Container Platform events.
-
-#### 10. CronJob Resource Consumption
-- **Purpose**: Monitors the resource usage of cron jobs.
-
-#### 11-15. Time Series of Resource Usage (CPU, Memory, Disk, Network) and Network Errors by Cron Job
+| Widget Number | Widget Name | Purpose | Application |
+|---------------|-------------|---------|-------------|
+| 1 - 7 | Job and Pod Metrics | Includes Number of Jobs, Successful Jobs, Failed Jobs, etc. | Tracks and analyzes job performance and failures |
+| 8 | Top Cron Jobs by Job Count | Identifies frequently run cron jobs | Highlights jobs impacting system performance |
+| 9 | Events Widget from OCP | Displays OpenShift Container Platform events | Monitors for system anomalies |
+| 10 - 15 | Resource Usage Time Series | Tracks resource usage by cron job | Enables in-depth resource monitoring |
 
 ### Detailed Pod/Container Information
 
-#### 1-11. Time Series and State Information for Pods and Containers
-- **Purpose**: These widgets provide granular details about pod and container states, resource usage, and errors.
+Further insights into pod and container metrics:
 
-## Utilizing the Dashboards for Incident Resolution
+| Widget Number | Widget Name | Purpose | Analysis |
+|---------------|-------------|---------|----------|
+| 1 - 11 | Granular Time Series and State Data | Includes Pod/Container states, OOM kills, etc. | Facilitates comprehensive incident analysis |
 
-1. **Identify the Issue**: Use the Overview widgets to detect spikes in failed jobs or resource overutilization.
-2. **Drill Down**: Employ the Detailed Pod/Container Information to pinpoint affected containers or pods.
-3. **Analyze and Resolve**: Examine logs, error messages, and resource metrics for root cause analysis and apply necessary fixes.
-4. **Monitor Post-Resolution**: Continuously monitor the dashboard to ensure the issue is resolved and to prevent recurrence.
+### Utilizing the Dashboard for Incident Resolution
+
+1. **Identify the Issue**: Utilize the overview widgets to detect potential anomalies.
+2. **Detail Analysis**: Drill down into affected containers or pods for specific insights.
+3. **In-Depth Investigation**: Examine logs and resource metrics for root cause analysis.
+4. **Implement Solutions**: Apply necessary remediations and continue to monitor the dashboard for issue resolution.
+
+---
 
 ## Conclusion
 
-These dashboards in Datadog are strategic tools for both leadership and engineering teams to maintain oversight and manage the health and performance of Data Science Batch Models. Regular engagement with these dashboards ensures sustained operational efficiency and effectiveness.
+The Leadership and Engineering Dashboards in Datadog are integral tools for maintaining operational efficiency in Data Science Batch Models. Regular engagement with these dashboards is essential for proactive management and prompt resolution of issues, ensuring the smooth functioning of operations.
