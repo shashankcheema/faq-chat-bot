@@ -53,3 +53,12 @@ This document outlines potential gaps in monitoring, logging, and alerting syste
 | Not Tailoring Alerts to Different Audiences | Relevant parties might miss crucial alerts. | Tailor alert recipients based on roles and responsibilities. |
 | Neglecting Alert Testing and Review | Risk of malfunctioning or ineffective alerts. | Regularly test and review the alerting system for effectiveness. |
 | Ignoring Alert Histories and Trends | Missed opportunities for proactive
+
+
+Challenges in the Current Ecosystem:
+
+Lack of Metadata for Models: There is a notable absence of metadata for both batch and real-time models. This metadata is essential for certain value streams, and its absence hinders effective analysis and utilization.
+
+Inconsistency in Model Execution Patterns: The modelers' team, particularly for batch model job executions, is not adhering to a standardized pattern. Instead, there is a tendency to create ad-hoc jobs to address issues as they arise. This approach is counterproductive and leads to confusion regarding the accuracy of success rate metrics.
+
+Discrepancies in Feature Offerings: There is noticeable uncertainty concerning the features provided by the DNA team compared to the Enterprise OCP/CLS teams. For instance, the CLS mapping features differ between DNA and Enterprise offerings. Additionally, there are disparities in available tools, such as the absence of the OTEL collector in DNA, which is available in Enterprise environments.
