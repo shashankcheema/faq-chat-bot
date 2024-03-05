@@ -28,3 +28,19 @@ Community of Practice: Form a community of practice within the organization for 
 Formal Learning (10%)
 Workshops and Training: Organize workshops and training sessions focused on the latest tools and technologies relevant to our goals, such as Datadog, Open Telemetry, and real-time data processing frameworks. These sessions will be conducted by external experts or in-house specialists.
 Online Courses and Certifications: Encourage team members to pursue relevant online courses and obtain certifications that align with our strategic goals and their personal development plans. Allocate dedicated time and resources for these learning activities.
+
+Capacity Building
+Strategic Guidance: Align your team's efforts with the organization's overarching objectives, providing a clear vision and purpose to guide your initiatives.
+Resource Provision: Ensure you have access to the necessary tools, technology, and team members to effectively pursue your goals. This includes advocating for budget allocations, facilitating training opportunities, and supporting team expansion as needed.
+Constructive Feedback
+Regular Feedback and Recognition: Offer continuous, actionable feedback on your leadership and the team's output. Acknowledge and celebrate successes to motivate and encourage further excellence.
+Mentorship for Growth: Provide mentorship to navigate challenges and enhance your leadership capabilities. This could involve setting up periodic one-on-one meetings to discuss your progress, challenges, and career development.
+Well-being
+Support Work-Life Balance: Advocate for policies and practices that support a healthy work-life balance for you and your team, recognizing the importance of well-being in sustaining high performance.
+Risk and Failure Support: Create a safety net for managing risks and dealing with setbacks. Offering guidance and reassurance that learning from failures is a valued part of the development process can help maintain team morale and resilience.
+Inclusion
+Foster an Inclusive Culture: Promote an environment where diverse perspectives are welcomed and valued, contributing to a richer, more creative problem-solving process.
+Empowerment and Autonomy: Trust in your decision-making abilities and provide the autonomy needed to innovate and lead your team effectively. This empowerment should extend to encouraging team members to take initiative and contribute their ideas freely.
+Collaboration and Communication
+Enhance Collaboration: Encourage open communication and collaboration within the team and across departments. This can help to ensure that the team’s efforts are integrated with wider organizational goals and that innovations are shared broadly.
+Personal Development Opportunities: Support your ongoing development by facilitating leadership training and opportunities to engage in cross-functional projects. This not only aids your growth but also enriches the team's skill set.
