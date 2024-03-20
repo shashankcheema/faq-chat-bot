@@ -1,65 +1,10 @@
-Current Integrations
-Real-Time Models/Applications/Services:
+We're thrilled to announce two major enhancements introduced by our SRE Team that are now available for your use:
 
-Library Vulnerabilities: NexusIQ
-Code Vulnerabilities: SonarQube
-Container/Image Vulnerabilities: JFrog
-Batch Models (Update):
+Logging SDK Enhancement: The kintsugi logger module now includes an enhanced decorator, designed to improve our logging capabilities significantly. This utility aids in determining execution times and categorizing error types more efficiently. For more details and usage instructions, please refer to the documentation here.
 
-Library Vulnerabilities: To be scanned with open-source tools as a supplement to NexusIQ.
-Code Vulnerabilities: To be scanned with open-source tools as a supplement to SonarQube.
-Container/Image Vulnerabilities: Directly available in JFrog, aligning with real-time models.
-Proposed Solution for Batch Models
-Objective
-Extend and refine the vulnerability management process to include the newly containerized batch models, leveraging their availability in JFrog for container/image vulnerabilities alongside open-source tools for library and code vulnerabilities.
+Batch Model Monitoring Dashboard: To provide deeper insights into the infrastructure side of batch models, we've developed a new monitoring dashboard. This tool is intended to enhance our understanding and monitoring capabilities. Access the dashboard and its documentation here.
 
-Solution Components
-JFrog Integration for Container/Image Vulnerabilities:
+We encourage everyone to explore these new capabilities and incorporate them into your projects. Your feedback is invaluable to us, so please share your experiences and suggestions for further improvements.
 
-Utilize JFrog Xray to scan batch model container images for vulnerabilities directly within JFrog, similar to the process for real-time models.
-Automate the scanning process to trigger upon new image pushes to JFrog repositories.
-Open-source Tool Selection for Library and Code Vulnerabilities:
-
-Library Vulnerabilities: OWASP Dependency-Check alongside NexusIQ.
-Code Vulnerabilities: Semgrep or Bandit for Python codebases, supplementing SonarQube.
-CI/CD Pipeline Enhancement:
-
-Integrate vulnerability scanning into CI/CD pipelines for both library/code and container/image vulnerabilities.
-Automate the pulling of source code and container images for scanning during the build/deploy process.
-Timelines and Dependencies
-Weeks 1-2: Tool Selection and JFrog Setup
-
-Finalize the selection of open-source tools for library and code scanning.
-Configure JFrog Xray for automated scanning of batch model images.
-Weeks 3-4: CI/CD Pipeline Integration
-
-Integrate library and code vulnerability scanning into the CI/CD pipeline for batch models.
-Ensure CI/CD pipeline is configured to trigger container/image vulnerability scanning in JFrog Xray upon new image pushes.
-Weeks 5-6: Implementation and Testing
-
-Roll out the updated vulnerability scanning process across batch models.
-Conduct thorough testing to validate the effectiveness and coverage of the scanning processes.
-Week 7 onwards: Monitoring, Documentation, and Iteration
-
-Monitor the implementation for effectiveness and developer feedback.
-Create comprehensive documentation for the updated vulnerability management process.
-Iterate on the process and tooling based on real-world feedback and new security developments.
-Potential Dependencies
-Integration Complexity with Existing CI/CD Pipelines: Ensuring smooth integration without disrupting existing development workflows.
-Tool Compatibility and Coverage: Verifying that selected open-source tools and JFrog Xray effectively cover the spectrum of potential vulnerabilities in both code and container images.
-Access and Permissions: Managing secure access to JFrog for automated scanning processes, ensuring that CI/CD pipelines have appropriate permissions.
-Risk Management
-Comprehensive Coverage: Regular reviews to ensure all types of vulnerabilities are adequately detected across tools.
-False Positives/Negatives: Establish a protocol for reviewing and addressing scan results to mitigate the impact of false positives/negatives.
-Adaptability to New Threats: Stay updated on new vulnerabilities and adapt tool configurations and scanning processes accordingly.
-
-
-mplement a vulnerability management process for batch models that aligns with the existing framework used for real-time models and applications. This involves setting up a system to pull source code from repositories and utilize open-source tools for vulnerability scanning.
-
-Tools Selection
-For batch models, the following open-source tools will be considered to cover library and code vulnerabilities:
-
-Library Vulnerabilities: Use OWASP Dependency-Check as an alternative to NexusIQ.
-Code Vulnerabilities: Employ Semgrep or Bandit for Python codebases as counterparts to SonarQube.
-Container/Image Vulnerabilities: Since batch models may not directly utilize containers, this area will be reviewed to determine if existing JFrog integrations or alternatives like Trivy can be adapted.
-
+Best,
+The SRE Team
