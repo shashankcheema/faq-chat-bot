@@ -52,3 +52,14 @@ Risk Management
 Comprehensive Coverage: Regular reviews to ensure all types of vulnerabilities are adequately detected across tools.
 False Positives/Negatives: Establish a protocol for reviewing and addressing scan results to mitigate the impact of false positives/negatives.
 Adaptability to New Threats: Stay updated on new vulnerabilities and adapt tool configurations and scanning processes accordingly.
+
+
+mplement a vulnerability management process for batch models that aligns with the existing framework used for real-time models and applications. This involves setting up a system to pull source code from repositories and utilize open-source tools for vulnerability scanning.
+
+Tools Selection
+For batch models, the following open-source tools will be considered to cover library and code vulnerabilities:
+
+Library Vulnerabilities: Use OWASP Dependency-Check as an alternative to NexusIQ.
+Code Vulnerabilities: Employ Semgrep or Bandit for Python codebases as counterparts to SonarQube.
+Container/Image Vulnerabilities: Since batch models may not directly utilize containers, this area will be reviewed to determine if existing JFrog integrations or alternatives like Trivy can be adapted.
+
