@@ -1,80 +1,54 @@
-Epic/Feature Design Document Template
-Epic/Feature Overview
+Current Integrations
+Real-Time Models/Applications/Services:
+
+Library Vulnerabilities: NexusIQ
+Code Vulnerabilities: SonarQube
+Container/Image Vulnerabilities: JFrog
+Batch Models (Update):
+
+Library Vulnerabilities: To be scanned with open-source tools as a supplement to NexusIQ.
+Code Vulnerabilities: To be scanned with open-source tools as a supplement to SonarQube.
+Container/Image Vulnerabilities: Directly available in JFrog, aligning with real-time models.
+Proposed Solution for Batch Models
 Objective
-Briefly describe the primary goal of the epic or feature.
+Extend and refine the vulnerability management process to include the newly containerized batch models, leveraging their availability in JFrog for container/image vulnerabilities alongside open-source tools for library and code vulnerabilities.
 
-Scope
-List the main components, features, or functionalities that the epic or feature will cover.
+Solution Components
+JFrog Integration for Container/Image Vulnerabilities:
 
-Design Template
-1. Preliminary Research and Requirements Definition
-Objective
-Identify the needs and constraints related to the epic or feature to establish a clear foundation.
+Utilize JFrog Xray to scan batch model container images for vulnerabilities directly within JFrog, similar to the process for real-time models.
+Automate the scanning process to trigger upon new image pushes to JFrog repositories.
+Open-source Tool Selection for Library and Code Vulnerabilities:
 
-Actions
-Conduct stakeholder interviews to gather insights and expectations.
-Define clear, measurable objectives for the epic or feature.
-Outline functional and non-functional requirements.
-2. Technical Setup and Access Configuration
-Objective
-Prepare the development and testing environments necessary for the epic or feature.
+Library Vulnerabilities: OWASP Dependency-Check alongside NexusIQ.
+Code Vulnerabilities: Semgrep or Bandit for Python codebases, supplementing SonarQube.
+CI/CD Pipeline Enhancement:
 
-Actions
-Select appropriate development tools and platforms.
-Ensure necessary access controls and permissions are in place.
-Validate the setup with an initial technical proof of concept.
-3. Design and Architecture Planning
-Objective
-Develop a scalable and maintainable architecture specific to the epic or feature.
+Integrate vulnerability scanning into CI/CD pipelines for both library/code and container/image vulnerabilities.
+Automate the pulling of source code and container images for scanning during the build/deploy process.
+Timelines and Dependencies
+Weeks 1-2: Tool Selection and JFrog Setup
 
-Actions
-Sketch out the architectural design, focusing on components relevant to the epic or feature.
-Design data models or schema modifications required.
-Review and refine the architecture with technical stakeholders.
-4. Development and Implementation Strategy
-Objective
-Detail the approach for turning design blueprints into functional software.
+Finalize the selection of open-source tools for library and code scanning.
+Configure JFrog Xray for automated scanning of batch model images.
+Weeks 3-4: CI/CD Pipeline Integration
 
-Actions
-Break down the epic or feature into manageable development tasks.
-Implement the functionality, adhering to coding standards and best practices.
-Perform thorough unit and integration testing.
-5. Testing and Quality Assurance Plan
-Objective
-Verify that the epic or feature meets all specified requirements through rigorous testing.
+Integrate library and code vulnerability scanning into the CI/CD pipeline for batch models.
+Ensure CI/CD pipeline is configured to trigger container/image vulnerability scanning in JFrog Xray upon new image pushes.
+Weeks 5-6: Implementation and Testing
 
-Actions
-Develop a comprehensive testing strategy, including criteria for automated and manual tests.
-Execute the testing plan, documenting any issues or defects.
-Ensure all issues are resolved prior to deployment.
-6. Documentation and User Support
-Objective
-Provide complete and accessible documentation and support materials for the epic or feature.
+Roll out the updated vulnerability scanning process across batch models.
+Conduct thorough testing to validate the effectiveness and coverage of the scanning processes.
+Week 7 onwards: Monitoring, Documentation, and Iteration
 
-Actions
-Document technical details, setup instructions, and usage guidelines.
-Create user guides or help articles as needed.
-Prepare support teams with knowledge transfer sessions.
-7. Deployment and Adoption Strategy
-Objective
-Ensure smooth deployment of the epic or feature and facilitate its adoption among users.
-
-Actions
-Plan and execute the deployment, including any necessary migrations or integrations.
-Monitor the initial adoption, collecting user feedback for future improvements.
-Implement a feedback loop to refine and enhance the feature based on real-world use.
-8. Post-Deployment Monitoring and Maintenance
-Objective
-Maintain the quality and performance of the epic or feature after its release.
-
-Actions
-Set up monitoring tools to track usage and performance metrics.
-Establish a schedule for regular reviews and updates.
-Plan for scalability and future enhancements based on user feedback.
-Risks and Mitigation Strategies
-Identify and outline potential risks specific to the epic or feature, along with planned mitigation strategies.
-
-Appendix
-API Documentation Links: For features integrating with external APIs.
-Research Summaries: Key findings from the preliminary research phase.
-Architecture Diagrams: Diagrams illustrating the planned architecture or data flows.
+Monitor the implementation for effectiveness and developer feedback.
+Create comprehensive documentation for the updated vulnerability management process.
+Iterate on the process and tooling based on real-world feedback and new security developments.
+Potential Dependencies
+Integration Complexity with Existing CI/CD Pipelines: Ensuring smooth integration without disrupting existing development workflows.
+Tool Compatibility and Coverage: Verifying that selected open-source tools and JFrog Xray effectively cover the spectrum of potential vulnerabilities in both code and container images.
+Access and Permissions: Managing secure access to JFrog for automated scanning processes, ensuring that CI/CD pipelines have appropriate permissions.
+Risk Management
+Comprehensive Coverage: Regular reviews to ensure all types of vulnerabilities are adequately detected across tools.
+False Positives/Negatives: Establish a protocol for reviewing and addressing scan results to mitigate the impact of false positives/negatives.
+Adaptability to New Threats: Stay updated on new vulnerabilities and adapt tool configurations and scanning processes accordingly.
