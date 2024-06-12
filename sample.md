@@ -26,7 +26,6 @@ Develop a new Flask application to run as a sidecar container alongside the Bird
 - **Resource Management**: Resources can be allocated and managed separately for the main and sidecar containers, optimizing the performance and efficiency of the overall system.
 - **Enhanced Capabilities**: The sidecar can extend Birddog’s capabilities to handle monitors, alerts, and dashboards for applications that do not have a service listed in Datadog.
 
-
 ## Detailed Plan
 
 ### Development Phase
@@ -140,42 +139,6 @@ Ensure that both the Birddog and sidecar containers can access the Vault for Dat
   - **Request Body:** JSON
   - **Response:** JSON
 
-## Additional Technical Details
-
-### Flask Application Structure
-The new Flask application will follow a standard structure:
-
-- **app/**: Directory containing the Flask application code.
-  - **routes.py**: Defines the API endpoints and request handling.
-  - **datadog_client.py**: Manages interactions with the Datadog API.
-  - **utils.py**: Contains utility functions for request validation and error handling.
-  - **config.py**: Configuration settings for the application, including environment variables.
-- **tests/**: Directory for unit and integration tests.
-  - **test_routes.py**: Tests for API endpoints.
-  - **test_datadog_client.py**: Tests for Datadog client interactions.
-  - **test_utils.py**: Tests for utility functions.
-- **requirements.txt**: Lists the dependencies required for the Flask application.
-
-### Inter-Container Communication
-Inter-container communication will be facilitated through the following methods:
-
-- **HTTP Requests**: The main Birddog container will communicate with the sidecar container using HTTP requests. Flask's built-in request handling will be used for this purpose.
-- **Environment Variables**: Necessary environment variables for inter-container communication will be defined in the pod specification.
-
-### Security Considerations
-- **API Key Management**: The sidecar container will access Datadog API keys from the Vault init container, similar to the main Birddog container.
-- **Secure Communication**: HTTPS will be used for communication between the containers to ensure data security.
-
-## Cons and Detailed Remediation
-
-| Cons                                         | Detailed Remediation                                                                                                   |
-|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| **Increased Complexity in Pod Management**   | Implement automated deployment scripts to manage pod configurations and updates. Use Kubernetes ConfigMaps and Secrets for managing configuration and sensitive data.                                                              |
-| **Potential Performance Overhead**           | Optimize the sidecar container to use minimal resources. Conduct performance testing to identify bottlenecks and improve efficiency. Monitor resource usage and adjust as needed to maintain optimal performance.            |
-| **Robust Error Handling and Recovery**       | Implement comprehensive error handling in the sidecar application. Use retry logic for transient errors and alerting mechanisms to notify about persistent issues. Employ logging and monitoring to quickly identify and address issues. |
-
-
-
 ## Detailed Execution Plan for Birddog and Sidecar Flask Application Integration
 
 This execution plan outlines the step-by-step process for the development, configuration, testing, and deployment of the sidecar Flask application to be integrated with the existing Birddog application in the OpenShift Container Platform (OCP). The plan is broken down into phases with specific tasks, milestones, and deliverables.
@@ -221,6 +184,42 @@ This execution plan outlines the step-by-step process for the development, confi
 | 5.1     | Deploy to OpenShift | Deployed application in OpenShift | 3 |
 | 5.2     | Monitor Application | Monitoring reports and issue logs | 2 |
 | 5.3     | Conduct Post-Deployment Testing | Post-deployment test results | 3 |
+
+
+## Additional Technical Details
+
+### Flask Application Structure
+The new Flask application will follow a standard structure:
+
+- **app/**: Directory containing the Flask application code.
+  - **routes.py**: Defines the API endpoints and request handling.
+  - **datadog_client.py**: Manages interactions with the Datadog API.
+  - **utils.py**: Contains utility functions for request validation and error handling.
+  - **config.py**: Configuration settings for the application, including environment variables.
+- **tests/**: Directory for unit and integration tests.
+  - **test_routes.py**: Tests for API endpoints.
+  - **test_datadog_client.py**: Tests for Datadog client interactions.
+  - **test_utils.py**: Tests for utility functions.
+- **requirements.txt**: Lists the dependencies required for the Flask application.
+
+### Inter-Container Communication
+Inter-container communication will be facilitated through the following methods:
+
+- **HTTP Requests**: The main Birddog container will communicate with the sidecar container using HTTP requests. Flask's built-in request handling will be used for this purpose.
+- **Environment Variables**: Necessary environment variables for inter-container communication will be defined in the pod specification.
+
+### Security Considerations
+- **API Key Management**: The sidecar container will access Datadog API keys from the Vault init container, similar to the main Birddog container.
+- **Secure Communication**: HTTPS will be used for communication between the containers to ensure data security.
+
+
+## Cons and Detailed Remediation
+
+| Cons                                         | Detailed Remediation                                                                                                   |
+|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Increased Complexity in Pod Management**   | Implement automated deployment scripts to manage pod configurations and updates. Use Kubernetes ConfigMaps and Secrets for managing configuration and sensitive data.                                                              |
+| **Potential Performance Overhead**           | Optimize the sidecar container to use minimal resources. Conduct performance testing to identify bottlenecks and improve efficiency. Monitor resource usage and adjust as needed to maintain optimal performance.            |
+| **Robust Error Handling and Recovery**       | Implement comprehensive error handling in the sidecar application. Use retry logic for transient errors and alerting mechanisms to notify about persistent issues. Employ logging and monitoring to quickly identify and address issues. |
 
 
 ## Technical Flow Diagrams
