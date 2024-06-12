@@ -17,22 +17,15 @@ Develop a new Flask application to run as a sidecar container alongside the Bird
 - **Changes to Main Container:** Document all necessary changes to the main Birddog container to support this integration.
 - **Cons Remediation:** Address all potential disadvantages of the sidecar approach.
 
-## Pros and Cons
+## Pros of the Sidecar Approach
 
-### Pros
-- Extends functionality of Birddog without modifying its core.
-- Isolates additional processing, reducing the risk of impacting the main application.
-- Utilizes existing security measures for accessing Datadog API keys.
+- **Modularity**: The sidecar approach allows for a modular design, where additional functionalities can be added without altering the core application. This enhances maintainability and scalability.
+- **Isolation**: By isolating additional processing in a sidecar container, the risk of impacting the main application is minimized. This leads to better fault tolerance.
+- **Security**: Existing security measures for accessing Datadog API keys can be reused in the sidecar, maintaining a consistent security model across the application.
+- **Flexibility**: Sidecar containers can be developed, tested, and deployed independently of the main application, allowing for more flexible and agile development practices.
+- **Resource Management**: Resources can be allocated and managed separately for the main and sidecar containers, optimizing the performance and efficiency of the overall system.
+- **Enhanced Capabilities**: The sidecar can extend Birddog’s capabilities to handle monitors, alerts, and dashboards for applications that do not have a service listed in Datadog.
 
-### Cons
-- Increased complexity in pod management.
-- Potential performance overhead due to inter-container communication.
-- Requires robust error handling and recovery mechanisms.
-
-## Cons Remediation
-- **Increased Complexity in Pod Management**: Implement automated deployment scripts to manage pod configurations and updates. Use Kubernetes ConfigMaps and Secrets for managing configuration and sensitive data.
-- **Potential Performance Overhead**: Optimize the sidecar container to use minimal resources. Conduct performance testing to identify bottlenecks and improve efficiency.
-- **Robust Error Handling and Recovery**: Implement comprehensive error handling in the sidecar application. Use retry logic for transient errors and alerting mechanisms to notify about persistent issues.
 
 ## Detailed Plan
 
@@ -207,3 +200,11 @@ Inter-container communication will be facilitated through the following methods:
  | - Sidecar Flask     |                +----------------+
  | - Vault Init        |
  +---------------------+
+
+## Cons and Detailed Remediation
+
+| Cons                                         | Detailed Remediation                                                                                                   |
+|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Increased Complexity in Pod Management**   | Implement automated deployment scripts to manage pod configurations and updates. Use Kubernetes ConfigMaps and Secrets for managing configuration and sensitive data.                                                              |
+| **Potential Performance Overhead**           | Optimize the sidecar container to use minimal resources. Conduct performance testing to identify bottlenecks and improve efficiency. Monitor resource usage and adjust as needed to maintain optimal performance.            |
+| **Robust Error Handling and Recovery**       | Implement comprehensive error handling in the sidecar application. Use retry logic for transient errors and alerting mechanisms to notify about persistent issues. Employ logging and monitoring to quickly identify and address issues. |
