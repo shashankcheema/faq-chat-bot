@@ -106,7 +106,35 @@ Inter-container communication will be facilitated through the following methods:
 - **API Key Management**: The sidecar container will access Datadog API keys from the Vault init container, similar to the main Birddog container.
 - **Secure Communication**: HTTPS will be used for communication between the containers to ensure data security.
 
-## Technical Flow Diagrams
+### Technical Flow Diagram
+
+```plaintext
+                                      +------------------+
+                                      |                  |
+                                      |   DataDog API    |
+                                      |                  |
+                                      +---------^--------+
+                                                |
+                                                |
+ +---------------------+                +-------+--------+
+ |                     |                |                |
+ | Vault Init Container|                |  Sidecar Flask |
+ |                     +---------------->  Application   |
+ |  (Fetch API Keys)   |                |                |
+ +----------^----------+                +-------^--------+
+            |                                   |
+            |                                   |
+            |                                   |
+            |                           +-------+--------+
+ +----------+----------+                |                |
+ |                     |                |   Birddog      |
+ |   OpenShift Pod     +<---------------+   Application  |
+ |                     |(Inter-container|                |
+ | - Birddog           | Communication) |                |
+ | - Sidecar Flask     |                +----------------+
+ | - Vault Init        |
+ +---------------------+
+
 
 ### Communication Flow:
 1. Request initiated from Birddog container.
