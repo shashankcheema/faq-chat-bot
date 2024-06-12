@@ -17,7 +17,17 @@ Develop a new Flask application to run as a sidecar container alongside the Bird
 - **Changes to Main Container:** Document all necessary changes to the main Birddog container to support this integration.
 - **Cons Remediation:** Address all potential disadvantages of the sidecar approach.
 
-{tabulated_pros_cons}
+## Pros and Cons
+
+### Pros
+- Extends functionality of Birddog without modifying its core.
+- Isolates additional processing, reducing the risk of impacting the main application.
+- Utilizes existing security measures for accessing Datadog API keys.
+
+### Cons
+- Increased complexity in pod management.
+- Potential performance overhead due to inter-container communication.
+- Requires robust error handling and recovery mechanisms.
 
 ## Cons Remediation
 - **Increased Complexity in Pod Management**: Implement automated deployment scripts to manage pod configurations and updates. Use Kubernetes ConfigMaps and Secrets for managing configuration and sensitive data.
@@ -26,31 +36,88 @@ Develop a new Flask application to run as a sidecar container alongside the Bird
 
 ## Detailed Plan
 
-1. **Development Phase**:
-   - Design the Flask application structure.
-   - Implement API endpoints and Datadog client.
-   - Write unit and integration tests.
+### Development Phase
+- Design the Flask application structure.
+- Implement API endpoints and Datadog client.
+- Write unit and integration tests.
 
-2. **Configuration Phase**:
-   - Define environment variables for inter-container communication.
-   - Update OpenShift pod specifications to include the sidecar container.
-   - Configure network policies for secure communication.
+### Configuration Phase
+- Define environment variables for inter-container communication.
+- Update OpenShift pod specifications to include the sidecar container.
+- Configure network policies for secure communication.
 
-3. **Testing Phase**:
-   - Conduct unit and integration testing.
-   - Perform performance testing to ensure minimal resource usage and optimal efficiency.
-   - Test inter-container communication and error handling mechanisms.
+### Testing Phase
+- Conduct unit and integration testing.
+- Perform performance testing to ensure minimal resource usage and optimal efficiency.
+- Test inter-container communication and error handling mechanisms.
 
-4. **Deployment Phase**:
-   - Deploy the updated pod configuration to OpenShift.
-   - Monitor the application for any issues.
-   - Conduct post-deployment testing to ensure seamless operation.
+### Deployment Phase
+- Deploy the updated pod configuration to OpenShift.
+- Monitor the application for any issues.
+- Conduct post-deployment testing to ensure seamless operation.
 
-{ocp_configuration_changes}
+## OCP Configuration Changes
+
+### Pod Specification
+Update the pod specification to include the sidecar container. Define resource limits and requests for both the Birddog and sidecar containers.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: birddog-pod
+spec:
+  containers:
+  - name: birddog-container
+    image: birddog-image:latest
+    env:
+    - name: DATADOG_API_KEY
+      valueFrom:
+        secretKeyRef:
+          name: datadog-secret
+          key: api_key
+  - name: sidecar-container
+    image: sidecar-image:latest
+    env:
+    - name: SIDE_APP_CONFIG
+      value: "config_value"
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+```
+
+### Network Policies
+Configure network policies to allow inter-container communication.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-inter-container-communication
+spec:
+  podSelector:
+    matchLabels:
+      app: birddog
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: birddog
+    ports:
+    - protocol: TCP
+      port: 5000
+```
+
+### Vault Integration
+Ensure that both the Birddog and sidecar containers can access the Vault for Datadog API keys.
 
 ## API Design
 
-### Sidecar Flask Application API:
+### Sidecar Flask Application API
 - **Endpoint:** /create_monitor
   - **Method:** POST
   - **Description:** Create a new Datadog monitor.
@@ -106,7 +173,13 @@ Inter-container communication will be facilitated through the following methods:
 - **API Key Management**: The sidecar container will access Datadog API keys from the Vault init container, similar to the main Birddog container.
 - **Secure Communication**: HTTPS will be used for communication between the containers to ensure data security.
 
-### Technical Flow Diagram
+## Technical Flow Diagrams
+
+### Communication Flow
+1. Request initiated from Birddog container.
+2. Birddog sends request to sidecar container.
+3. Sidecar processes the request using Datadog API keys from Vault.
+4. Sidecar sends response back to Birddog.
 
 ```plaintext
                                       +------------------+
@@ -134,10 +207,3 @@ Inter-container communication will be facilitated through the following methods:
  | - Sidecar Flask     |                +----------------+
  | - Vault Init        |
  +---------------------+
-
-
-### Communication Flow:
-1. Request initiated from Birddog container.
-2. Birddog sends request to sidecar container.
-3. Sidecar processes the request using Datadog API keys from Vault.
-4. Sidecar sends response back to Birddog.
